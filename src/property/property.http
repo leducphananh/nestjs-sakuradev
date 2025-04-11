@@ -1,0 +1,29 @@
+GET http://localhost:3000/property
+content-type: application/json
+
+###
+
+GET http://localhost:3000/property/99?sort=true
+content-type: application/json
+
+###
+
+POST http://localhost:3000/property
+content-type: application/json
+
+{
+    "name": "House",
+    "description": "A beautiful house",
+    "area": 14
+}
+
+###
+
+PATCH http://localhost:3000/property
+content-type: application/json
+
+{
+    "name": "House",
+    "description": "A beautiful house",
+    "area": 14
+}
