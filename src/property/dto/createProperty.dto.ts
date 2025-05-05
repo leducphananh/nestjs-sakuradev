@@ -6,11 +6,10 @@ export class CreatePropertyDto {
   name: string;
 
   @IsString()
-  @Length(2, 20, { groups: ['create'] })
-  @Length(1, 15, { groups: ['update'] })
+  @Length(2, 500)
   description: string;
 
   @IsInt()
   @IsPositive()
-  area: number;
+  price: number;
 }

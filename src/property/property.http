@@ -3,7 +3,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3000/property/99?sort=true
+GET http://localhost:3000/property/99
 content-type: application/json
 
 ###
@@ -12,18 +12,20 @@ POST http://localhost:3000/property
 content-type: application/json
 
 {
-    "name": "House",
-    "description": "A beautiful house",
-    "area": 14
+    "name": "Property 1",
+    "description": "Description of the property",
+    "price": 29000
 }
 
 ###
 
-PATCH http://localhost:3000/property
+PATCH http://localhost:3000/property/3
 content-type: application/json
 
 {
-    "name": "House",
-    "description": "A beautiful house",
-    "area": 14
+    "price": 39000
 }
+
+###
+DELETE http://localhost:3000/property/3
+content-type: application/json

@@ -1,72 +1,46 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
-  ParseBoolPipe,
   ParseIntPipe,
   Patch,
   Post,
-  Query,
-  ValidationPipe,
 } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/createProperty.dto';
+import { UpdatePropertyDto } from './dto/updateProperty.dto';
+import { PropertyService } from './property.service';
 
 @Controller('property')
 export class PropertyController {
+  constructor(private propertyService: PropertyService) {}
+
   @Get()
   findAll() {
-    return 'All Properties';
+    return this.propertyService.findAll();
   }
 
   @Get(':id')
-  findOne(
-    @Param('id', ParseIntPipe) id: number,
-    @Query('sort', ParseBoolPipe) sort: boolean,
-  ) {
-    return `This will return property with id: ${id} and sort: ${sort}`;
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.propertyService.findOne(id);
   }
 
-  //   Solution 1:
-  //   @Post()
-  //   @UsePipes(
-  //     new ValidationPipe({
-  //       whitelist: true,
-  //       forbidNonWhitelisted: true,
-  //     }),
-  //   )
-  //   create(@Body() body: CreatePropertyDto) {
-  //     return body;
-  //   }
-
-  //   Solution 2:
   @Post()
-  create(
-    @Body(
-      new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-        groups: ['create'],
-        always: true,
-      }),
-    )
-    body: CreatePropertyDto,
-  ) {
-    return body;
+  create(@Body() dto: CreatePropertyDto) {
+    return this.propertyService.create(dto);
   }
 
-  @Patch()
+  @Patch(':id')
   update(
-    @Body(
-      new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-        groups: ['update'],
-        always: true,
-      }),
-    )
-    body: CreatePropertyDto,
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdatePropertyDto,
   ) {
-    return body;
+    return this.propertyService.update(id, dto);
+  }
+
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.propertyService.delete(id);
   }
 }
