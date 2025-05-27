@@ -1,0 +1,18 @@
+POST http://localhost:3000/user
+content-type: application/json
+
+{
+    "firstName": "new",
+    "lastName": "user",
+    "email": "new-user@example.com",
+    "password": "admin123"
+}
+
+######
+
+PATCH http://localhost:3000/user/13
+content-type: application/json
+
+{
+   "password": "admin123"
+}
