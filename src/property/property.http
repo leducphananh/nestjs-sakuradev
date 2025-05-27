@@ -1,6 +1,6 @@
 GET http://localhost:3000/property
     ?page=3
-    &limit=12
+    &limit=10
 content-type: application/json
 
 ###
