@@ -7,6 +7,7 @@ import dbConfig from './config/db.config';
 import dbConfigProduction from './config/db.config.production';
 import { PropertyModule } from './property/property.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
         process.env.NODE_ENV === 'production' ? dbConfigProduction : dbConfig,
     }),
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
