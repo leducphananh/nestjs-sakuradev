@@ -10,9 +10,20 @@ content-type: application/json
 
 ######
 
+GET http://localhost:3000/user/13
+content-type: application/json
+
+######
+
 PATCH http://localhost:3000/user/13
 content-type: application/json
 
 {
    "password": "admin123"
 }
+
+######
+
+GET http://localhost:3000/user/profile
+content-type: application/json
+Authorization: Bearer <token>
